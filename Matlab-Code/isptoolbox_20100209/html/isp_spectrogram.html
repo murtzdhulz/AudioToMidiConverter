@@ -1,0 +1,191 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>ISP_SPECTROGRAM</title>
+      <meta name="generator" content="MATLAB 7.5">
+      <meta name="date" content="2010-02-09">
+      <meta name="m-file" content="isp_spectrogram"><style>
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head>
+   <body>
+      <div class="content">
+         <h1>ISP_SPECTROGRAM</h1>
+         <introduction>
+            <p>Compute the spectrogram of a signal.</p>
+            <p>SYNTAX: [X,options,f,t] = isp_spectrogram(x,options)</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Description</a></li>
+               <li><a href="#2">Input</a></li>
+               <li><a href="#3">Output</a></li>
+               <li><a href="#4">See also</a></li>
+               <li><a href="#5">History</a></li>
+            </ul>
+         </div>
+         <h2>Description<a name="1"></a></h2>
+         <p>The function isp_spectrogram computes the spectrogram of a signal. The spectrogram is computed using the asinh of the absolute
+            discrete Fourier transform, where a Hamming window is applied.
+         </p>
+         <h2>Input<a name="2"></a></h2>
+         <p><dl><dt><em> x: </em></dt><dd> Signal vector. </dd> <dt><em> options ...: </em></dt><dd> Structs or field/value pairs
+            with any of the following fields: <dl><dt><em> fs: </em></dt><dd> Sampling frequency (default 44100). </dd> <dt><em> tw: </em></dt><dd>
+            Window size in seconds (default 0.02). </dd> <dt><em> to: </em></dt><dd> Overlap in seconds (default 0.01)        . </em></dt><dd>
+            </dd></dl> </dd></dl> 
+         </p>
+         <h2>Output<a name="3"></a></h2>
+         <p><dl><dt><em> X: </em></dt><dd> Spectrogram for signal x </dd> <dt><em> options: </em></dt><dd> Options used to compute
+            the spectrogram </dd> <dt><em> f: </em></dt><dd> Frequency axis for spectrogram </dd> <dt><em> t: </em></dt><dd> Time axis
+            for spectrogram </dd></dl> 
+         </p>
+         <h2>See also<a name="4"></a></h2>
+         <p><a href="isp_mfccsig.html">isp_mfccsig</a>.
+         </p>
+         <h2>History<a name="5"></a></h2>
+         <p>Created by Sigurdur Sigurdsson, ISP, IMM, DTU. Modified to suit toolbox by Jesper H. Jensen.</p>
+         <p> <hr><table width="100%"><tr><td align="left"><em><a href="index.html">Intelligent Sound Processing Toolbox</a></em></td><td
+            align="right" size="-1"><em><a href="Contents.html">Contents</a></em></td></tr></table> 
+         </p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% ISP_SPECTROGRAM
+% Compute the spectrogram of a signal.
+% 
+% SYNTAX:
+% [X,options,f,t] = isp_spectrogram(x,options)
+% 
+%% Description
+% The function isp_spectrogram computes the spectrogram of a signal.
+% The spectrogram is computed using the asinh of the absolute discrete
+% Fourier transform, where a Hamming window is applied.
+% 
+%% Input
+% <dl><dt><em>
+% x:
+% </em></dt><dd> 
+% Signal vector.
+% </dd>
+% <dt><em>
+% options ...:
+% </em></dt><dd> 
+% Structs or field/value pairs with any of the following fields:
+% <dl><dt><em> 
+% fs:
+% </em></dt><dd> 
+% Sampling frequency (default 44100).
+% </dd>
+% <dt><em>
+% tw:
+% </em></dt><dd> 
+% Window size in seconds (default 0.02).
+% </dd>
+% <dt><em>
+% to:
+% </em></dt><dd> 
+% Overlap in seconds (default 0.01)        .
+% </em></dt><dd>
+% </dd></dl>
+% </dd></dl>
+% 
+%% Output
+% <dl><dt><em>
+% X:
+% </em></dt><dd> 
+% Spectrogram for signal x
+% </dd>
+% <dt><em>
+% options:
+% </em></dt><dd> 
+% Options used to compute the spectrogram
+% </dd>
+% <dt><em>
+% f:
+% </em></dt><dd> 
+% Frequency axis for spectrogram
+% </dd>
+% <dt><em>
+% t:
+% </em></dt><dd> 
+% Time axis for spectrogram
+% </dd></dl>
+% 
+%% See also
+% <isp_mfccsig.html isp_mfccsig>.
+%% History
+% Created by Sigurdur Sigurdsson, ISP, IMM, DTU.
+% Modified to suit toolbox by Jesper H. Jensen.
+%%
+%
+% 
+% <hr><table width="100%"><tr><td align="left"><em><a href="index.html">Intelligent Sound Processing Toolbox</a></em></td><td align="right" size="-1"><em><a href="Contents.html">Contents</a></em></td></tr></table>
+% 
+%
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

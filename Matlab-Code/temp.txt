@@ -1,0 +1,21 @@
+MFile 1 2 120
+MTrk
+0 TimeSig 4/4 24 8
+0 Tempo 500000
+0 Meta TrkEnd
+TrkEnd
+MTrk
+0 On ch=1 n=69 v=88
+242 On ch=1 n=69 v=0
+242 On ch=1 n=72 v=104
+476 On ch=1 n=72 v=0
+476 On ch=1 n=71 v=77
+718 On ch=1 n=71 v=0
+718 On ch=1 n=67 v=108
+961 On ch=1 n=67 v=0
+961 On ch=1 n=69 v=88
+1203 On ch=1 n=69 v=0
+1203 On ch=1 n=60 v=0
+1323 On ch=1 n=60 v=0
+1323 Meta TrkEnd
+TrkEnd

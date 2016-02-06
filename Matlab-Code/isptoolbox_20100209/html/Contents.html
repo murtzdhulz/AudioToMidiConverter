@@ -1,0 +1,218 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>Intelligent Sound Processing Toolbox</title>
+      <meta name="generator" content="MATLAB 7.5">
+      <meta name="date" content="2010-02-09">
+      <meta name="m-file" content="Contents"><style>
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head>
+   <body>
+      <div class="content">
+         <h1>Intelligent Sound Processing Toolbox</h1>
+         <introduction></introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Demonstrations</a></li>
+               <li><a href="#2">Classification</a></li>
+               <li><a href="#3">Distributed Computing</a></li>
+               <li><a href="#4">Evaluation</a></li>
+               <li><a href="#5">Features</a></li>
+               <li><a href="#6">Sampled audio</a></li>
+               <li><a href="#7">MIDI</a></li>
+               <li><a href="#8">Miscellaneous</a></li>
+            </ul>
+         </div>
+         <h2>Demonstrations<a name="1"></a></h2>
+         <p><dl> <dt> <a href="isp_audioreaddemo.html">isp_audioreaddemo</a></dt><dd> Demonstration of how to use isp_audioread </dd> <dt> <a href="isp_distancemeasuredemo.html">isp_distancemeasuredemo</a></dt><dd> Demonstrate various aspects of music distance measures </dd> <dt> <a href="isp_distributedemo.html">isp_distributedemo</a></dt><dd> Demonstration of isp_distribute. </dd> <dt> <a href="isp_evaluatedemo1.html">isp_evaluatedemo1</a></dt><dd> Demonstration of how to use the evaluation framework </dd> <dt> <a href="isp_evaluatedemo2.html">isp_evaluatedemo2</a></dt><dd> Demonstration of how to use the evaluation framework </dd> <dt> <a href="isp_gmmdemo.html">isp_gmmdemo</a></dt><dd> Demonstration that uses the Gaussian mixture model functions. </dd> <dt> <a href="isp_mididemo.html">isp_mididemo</a></dt><dd> Demonstration of midi input/output </dd> <dt> <a href="isp_rhythmdemo.html">isp_rhythmdemo</a></dt><dd> Demonstration of isp_tirhythm and the evaluation framework </dd> </dl>
+         </p>
+         <h2>Classification<a name="2"></a></h2>
+         <p><dl> <dt> <a href="isp_gmmdemo.html">isp_gmmdemo</a></dt><dd> Demonstration that uses the Gaussian mixture model functions. </dd> <dt> <a href="isp_gmmdistance.html">isp_gmmdistance</a></dt><dd> Compute distance between two Gaussian mixture models. </dd> <dt> <a href="isp_gmmprobability.html">isp_gmmprobability</a></dt><dd> Probability of vectors according to a specified Gaussian Mixture Model. </dd> <dt> <a href="isp_gmmrand.html">isp_gmmrand</a></dt><dd> Generate random vectors from a Gaussian Mixture Model. </dd> <dt> <a href="isp_gmmtrain.html">isp_gmmtrain</a></dt><dd> Train a Gaussian mixture model from data </dd> <dt> <a href="isp_kmeans.html">isp_kmeans</a></dt><dd> Binary tree k-means algorithm </dd> </dl>
+         </p>
+         <h2>Distributed Computing<a name="3"></a></h2>
+         <p><dl> <dt> <a href="isp_distributedemo_helper1.html">isp_distributedemo_helper1</a></dt><dd> Helper function for isp_distributedemo </dd> <dt> <a href="isp_distributedemo_helper2.html">isp_distributedemo_helper2</a></dt><dd> Helper function for isp_distributedemo </dd> <dt> <a href="isp_distributedemo.html">isp_distributedemo</a></dt><dd> Demonstration of isp_distribute. </dd> <dt> <a href="isp_distribute.html">isp_distribute</a></dt><dd> Distribute job for parallel execution on multiple machines. </dd> <dt> <a href="isp_runjob.html">isp_runjob</a></dt><dd> Execute pending, distributed jobs. </dd> </dl>
+         </p>
+         <h2>Evaluation<a name="4"></a></h2>
+         <p><dl> <dt> <a href="isp_computedistance.html">isp_computedistance</a></dt><dd> Compute distance matrix. </dd> <dt> <a href="isp_evaluatedistancematrix.html">isp_evaluatedistancematrix</a></dt><dd> Helper function for isp_evaluate </dd> <dt> <a href="isp_evaluate.html">isp_evaluate</a></dt><dd> Evaluate a musical distance measures </dd> <dt> <a href="isp_extractfeature.html">isp_extractfeature</a></dt><dd> Extract features from a song. </dd> <dt> <a href="isp_makesonglist.html">isp_makesonglist</a></dt><dd> Generate a song list from various collections </dd> <dt> <a href="isp_plotresults.html">isp_plotresults</a></dt><dd> Plots results returned by isp_evaluate </dd> <dt> <a href="isp_testskeleton.html">isp_testskeleton</a></dt><dd> Internal function providing a framework for isp_evaluate. </dd> </dl>
+         </p>
+         <h2>Features<a name="5"></a></h2>
+         <p><dl> <dt> <a href="isp_ar.html">isp_ar</a></dt><dd> Compute multivariate autoregressive coefficients. </dd> <dt> <a href="isp_arwrapper.html">isp_arwrapper</a></dt><dd> Wrapper function for isp_ar. </dd> <dt> <a href="isp_chroma.html">isp_chroma</a></dt><dd> Compute chroma vectors </dd> <dt> <a href="isp_ifchromagram.html">isp_ifchromagram</a></dt><dd> Compute chromagram from instantaneous frequency </dd> <dt> <a href="isp_ifgram.html">isp_ifgram</a></dt><dd> Instantaneous frequency by phase derivative. </dd> <dt> <a href="isp_ifptrack.html">isp_ifptrack</a></dt><dd> Pitch track based on instantaneous frequency. </dd> <dt> <a href="isp_melfilterbank.html">isp_melfilterbank</a></dt><dd> Compute the mel scaled filterbank. </dd> <dt> <a href="isp_mfccat.html">isp_mfccat</a></dt><dd> Reimplementation of MFCC from the Auditory Toolbox </dd> <dt> <a href="isp_mfccgmmkl.html">isp_mfccgmmkl</a></dt><dd> Definition of MFCC-GMM-Kullback-Leibler distance measure </dd> <dt> <a href="isp_mfccsig.html">isp_mfccsig</a></dt><dd> Compute the MFCC of a signal. </dd> <dt> <a href="isp_mfccvb.html">isp_mfccvb</a></dt><dd> MFCC implementation based on Mike Brookes' Voicebox </dd> <dt> <a href="isp_spectrogram.html">isp_spectrogram</a></dt><dd> Compute the spectrogram of a signal. </dd> <dt> <a href="isp_tichroma.html">isp_tichroma</a></dt><dd> Define time scale invariant chroma-based distance measure. </dd> <dt> <a href="isp_tirhythm.html">isp_tirhythm</a></dt><dd> Define time scale insensitive measure of rhythmic distance. </dd> </dl>
+         </p>
+         <h2>Sampled audio<a name="6"></a></h2>
+         <p><dl> <dt> <a href="isp_audioreaddemo.html">isp_audioreaddemo</a></dt><dd> Demonstration of how to use isp_audioread </dd> <dt> <a href="isp_audioread.html">isp_audioread</a></dt><dd> Read audio file. </dd> <dt> <a href="isp_mp3read.html">isp_mp3read</a></dt><dd> Read wave data and song information from an MP3 file. </dd> <dt> <a href="isp_wavmodify.html">isp_wavmodify</a></dt><dd> Modifies properties of a WAV struct. </dd> </dl>
+         </p>
+         <h2>MIDI<a name="7"></a></h2>
+         <p><dl> <dt> <a href="isp_mididemo.html">isp_mididemo</a></dt><dd> Demonstration of midi input/output </dd> <dt> <a href="isp_midigmname.html">isp_midigmname</a></dt><dd> Return names of instruments in General MIDI Level 1 sound set. </dd> <dt> <a href="isp_midimodify.html">isp_midimodify</a></dt><dd> Modifies properties of a MIDI struct. </dd> <dt> <a href="isp_midiread.html">isp_midiread</a></dt><dd> Read MIDI file </dd> <dt> <a href="isp_midishow.html">isp_midishow</a></dt><dd> Visualize a midi song </dd> <dt> <a href="isp_midisynth.html">isp_midisynth</a></dt><dd> Synthesize a MIDI song to wave data. </dd> <dt> <a href="isp_midiwrite.html">isp_midiwrite</a></dt><dd> Write MIDI file. </dd> </dl>
+         </p>
+         <h2>Miscellaneous<a name="8"></a></h2>
+         <p><dl> <dt> <a href="isp_assert.html">isp_assert</a></dt><dd> Print error message if assertion does not hold. </dd> <dt> <a href="isp_bsearch.html">isp_bsearch</a></dt><dd> Binary search </dd> <dt> <a href="isp_callexecutable.html">isp_callexecutable</a></dt><dd> Locate and execute external command (internal ISP toolbox command). </dd> <dt> <a href="isp_interpretarguments.html">isp_interpretarguments</a></dt><dd> Interpret arguments and set default values for unspecified fields. </dd> <dt> <a href="isp_linestyle.html">isp_linestyle</a></dt><dd> Create options for line and marker styles. </dd> <dt> <a href="isp_nonempty.html">isp_nonempty</a></dt><dd> Return the first non-empty input argument </dd> <dt> <a href="isp_pickle.html">isp_pickle</a></dt><dd> Convert Matlab data to column vector </dd> <dt> <a href="isp_plot.html">isp_plot</a></dt><dd> Plot many-dimensional variable </dd> <dt> <a href="isp_showspectrogram.html">isp_showspectrogram</a></dt><dd> Plots a spectrogram </dd> <dt> <a href="isp_subplotlabel.html">isp_subplotlabel</a></dt><dd> Plot per-figure labels </dd> <dt> <a href="isp_tempfile.html">isp_tempfile</a></dt><dd> Generate temporary file name </dd> <dt> <a href="isp_toolboxpath.html">isp_toolboxpath</a></dt><dd> Returns the path to the ISP Toolbox </dd> <dt> <a href="isp_unpickle.html">isp_unpickle</a></dt><dd> Recover original Matlab object from pickled column vector. </dd> </dl>
+         </p>
+         <p><html> <hr><table width="100%"><tr><td align="left"><em><a href="index.html">Intelligent Sound Processing Toolbox</a></em></td></tr></table>
+            </html>
+         </p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% Intelligent Sound Processing Toolbox
+%% Demonstrations
+% <dl>
+% <dt> <isp_audioreaddemo.html isp_audioreaddemo></dt><dd> Demonstration of how to use isp_audioread </dd>
+% <dt> <isp_distancemeasuredemo.html isp_distancemeasuredemo></dt><dd> Demonstrate various aspects of music distance measures </dd>
+% <dt> <isp_distributedemo.html isp_distributedemo></dt><dd> Demonstration of isp_distribute. </dd>
+% <dt> <isp_evaluatedemo1.html isp_evaluatedemo1></dt><dd> Demonstration of how to use the evaluation framework </dd>
+% <dt> <isp_evaluatedemo2.html isp_evaluatedemo2></dt><dd> Demonstration of how to use the evaluation framework </dd>
+% <dt> <isp_gmmdemo.html isp_gmmdemo></dt><dd> Demonstration that uses the Gaussian mixture model functions. </dd>
+% <dt> <isp_mididemo.html isp_mididemo></dt><dd> Demonstration of midi input/output </dd>
+% <dt> <isp_rhythmdemo.html isp_rhythmdemo></dt><dd> Demonstration of isp_tirhythm and the evaluation framework </dd>
+% </dl>
+%% Classification
+% <dl>
+% <dt> <isp_gmmdemo.html isp_gmmdemo></dt><dd> Demonstration that uses the Gaussian mixture model functions. </dd>
+% <dt> <isp_gmmdistance.html isp_gmmdistance></dt><dd> Compute distance between two Gaussian mixture models. </dd>
+% <dt> <isp_gmmprobability.html isp_gmmprobability></dt><dd> Probability of vectors according to a specified Gaussian Mixture Model. </dd>
+% <dt> <isp_gmmrand.html isp_gmmrand></dt><dd> Generate random vectors from a Gaussian Mixture Model. </dd>
+% <dt> <isp_gmmtrain.html isp_gmmtrain></dt><dd> Train a Gaussian mixture model from data </dd>
+% <dt> <isp_kmeans.html isp_kmeans></dt><dd> Binary tree k-means algorithm </dd>
+% </dl>
+%% Distributed Computing
+% <dl>
+% <dt> <isp_distributedemo_helper1.html isp_distributedemo_helper1></dt><dd> Helper function for isp_distributedemo </dd>
+% <dt> <isp_distributedemo_helper2.html isp_distributedemo_helper2></dt><dd> Helper function for isp_distributedemo </dd>
+% <dt> <isp_distributedemo.html isp_distributedemo></dt><dd> Demonstration of isp_distribute. </dd>
+% <dt> <isp_distribute.html isp_distribute></dt><dd> Distribute job for parallel execution on multiple machines. </dd>
+% <dt> <isp_runjob.html isp_runjob></dt><dd> Execute pending, distributed jobs. </dd>
+% </dl>
+%% Evaluation
+% <dl>
+% <dt> <isp_computedistance.html isp_computedistance></dt><dd> Compute distance matrix. </dd>
+% <dt> <isp_evaluatedistancematrix.html isp_evaluatedistancematrix></dt><dd> Helper function for isp_evaluate </dd>
+% <dt> <isp_evaluate.html isp_evaluate></dt><dd> Evaluate a musical distance measures </dd>
+% <dt> <isp_extractfeature.html isp_extractfeature></dt><dd> Extract features from a song. </dd>
+% <dt> <isp_makesonglist.html isp_makesonglist></dt><dd> Generate a song list from various collections </dd>
+% <dt> <isp_plotresults.html isp_plotresults></dt><dd> Plots results returned by isp_evaluate </dd>
+% <dt> <isp_testskeleton.html isp_testskeleton></dt><dd> Internal function providing a framework for isp_evaluate. </dd>
+% </dl>
+%% Features
+% <dl>
+% <dt> <isp_ar.html isp_ar></dt><dd> Compute multivariate autoregressive coefficients. </dd>
+% <dt> <isp_arwrapper.html isp_arwrapper></dt><dd> Wrapper function for isp_ar. </dd>
+% <dt> <isp_chroma.html isp_chroma></dt><dd> Compute chroma vectors </dd>
+% <dt> <isp_ifchromagram.html isp_ifchromagram></dt><dd> Compute chromagram from instantaneous frequency </dd>
+% <dt> <isp_ifgram.html isp_ifgram></dt><dd> Instantaneous frequency by phase derivative. </dd>
+% <dt> <isp_ifptrack.html isp_ifptrack></dt><dd> Pitch track based on instantaneous frequency. </dd>
+% <dt> <isp_melfilterbank.html isp_melfilterbank></dt><dd> Compute the mel scaled filterbank. </dd>
+% <dt> <isp_mfccat.html isp_mfccat></dt><dd> Reimplementation of MFCC from the Auditory Toolbox </dd>
+% <dt> <isp_mfccgmmkl.html isp_mfccgmmkl></dt><dd> Definition of MFCC-GMM-Kullback-Leibler distance measure </dd>
+% <dt> <isp_mfccsig.html isp_mfccsig></dt><dd> Compute the MFCC of a signal. </dd>
+% <dt> <isp_mfccvb.html isp_mfccvb></dt><dd> MFCC implementation based on Mike Brookes' Voicebox </dd>
+% <dt> <isp_spectrogram.html isp_spectrogram></dt><dd> Compute the spectrogram of a signal. </dd>
+% <dt> <isp_tichroma.html isp_tichroma></dt><dd> Define time scale invariant chroma-based distance measure. </dd>
+% <dt> <isp_tirhythm.html isp_tirhythm></dt><dd> Define time scale insensitive measure of rhythmic distance. </dd>
+% </dl>
+%% Sampled audio
+% <dl>
+% <dt> <isp_audioreaddemo.html isp_audioreaddemo></dt><dd> Demonstration of how to use isp_audioread </dd>
+% <dt> <isp_audioread.html isp_audioread></dt><dd> Read audio file. </dd>
+% <dt> <isp_mp3read.html isp_mp3read></dt><dd> Read wave data and song information from an MP3 file. </dd>
+% <dt> <isp_wavmodify.html isp_wavmodify></dt><dd> Modifies properties of a WAV struct. </dd>
+% </dl>
+%% MIDI
+% <dl>
+% <dt> <isp_mididemo.html isp_mididemo></dt><dd> Demonstration of midi input/output </dd>
+% <dt> <isp_midigmname.html isp_midigmname></dt><dd> Return names of instruments in General MIDI Level 1 sound set. </dd>
+% <dt> <isp_midimodify.html isp_midimodify></dt><dd> Modifies properties of a MIDI struct. </dd>
+% <dt> <isp_midiread.html isp_midiread></dt><dd> Read MIDI file </dd>
+% <dt> <isp_midishow.html isp_midishow></dt><dd> Visualize a midi song </dd>
+% <dt> <isp_midisynth.html isp_midisynth></dt><dd> Synthesize a MIDI song to wave data. </dd>
+% <dt> <isp_midiwrite.html isp_midiwrite></dt><dd> Write MIDI file. </dd>
+% </dl>
+%% Miscellaneous
+% <dl>
+% <dt> <isp_assert.html isp_assert></dt><dd> Print error message if assertion does not hold. </dd>
+% <dt> <isp_bsearch.html isp_bsearch></dt><dd> Binary search </dd>
+% <dt> <isp_callexecutable.html isp_callexecutable></dt><dd> Locate and execute external command (internal ISP toolbox command). </dd>
+% <dt> <isp_interpretarguments.html isp_interpretarguments></dt><dd> Interpret arguments and set default values for unspecified fields. </dd>
+% <dt> <isp_linestyle.html isp_linestyle></dt><dd> Create options for line and marker styles. </dd>
+% <dt> <isp_nonempty.html isp_nonempty></dt><dd> Return the first non-empty input argument </dd>
+% <dt> <isp_pickle.html isp_pickle></dt><dd> Convert Matlab data to column vector </dd>
+% <dt> <isp_plot.html isp_plot></dt><dd> Plot many-dimensional variable </dd>
+% <dt> <isp_showspectrogram.html isp_showspectrogram></dt><dd> Plots a spectrogram </dd>
+% <dt> <isp_subplotlabel.html isp_subplotlabel></dt><dd> Plot per-figure labels </dd>
+% <dt> <isp_tempfile.html isp_tempfile></dt><dd> Generate temporary file name </dd>
+% <dt> <isp_toolboxpath.html isp_toolboxpath></dt><dd> Returns the path to the ISP Toolbox </dd>
+% <dt> <isp_unpickle.html isp_unpickle></dt><dd> Recover original Matlab object from pickled column vector. </dd>
+% </dl>
+%%
+%
+% <html>
+% <hr><table width="100%"><tr><td align="left"><em><a href="index.html">Intelligent Sound Processing Toolbox</a></em></td></tr></table>
+% </html>
+%
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

@@ -1,0 +1,367 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>ISP_LINESTYLE</title>
+      <meta name="generator" content="MATLAB 7.5">
+      <meta name="date" content="2010-02-09">
+      <meta name="m-file" content="isp_linestyle"><style>
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head>
+   <body>
+      <div class="content">
+         <h1>ISP_LINESTYLE</h1>
+         <introduction>
+            <p>Create options for line and marker styles.</p>
+         </introduction>
+         <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">Syntax</a></li>
+               <li><a href="#2">Description</a></li>
+               <li><a href="#3">Input</a></li>
+               <li><a href="#4">Output</a></li>
+               <li><a href="#5">Example</a></li>
+               <li><a href="#6">See also</a></li>
+               <li><a href="#7">History</a></li>
+            </ul>
+         </div>
+         <h2>Syntax<a name="1"></a></h2><pre>[param, options] = isp_linestyle(idx, varargin)
+[param, options] = isp_linestyle(idx, order, varargin)</pre><h2>Description<a name="2"></a></h2>
+         <p>This function makes it easy to create custom linestyles when MATLAB's axes' ColorOrder and LineStyleOrder properties are not
+            flexible enough. It can be used to just create a lot of different linestyles, or it can be used when e.g. the lines' color
+            should depend on one parameter, the style on another, and the marker type on a third parameter. Although isp_linestyle can
+            be called directly, in many cases it is easier to use isp_plot.
+         </p>
+         <h2>Input<a name="3"></a></h2>
+         <p><dl><dt><em> idx: </em></dt><dd> Array of length N, where N is the number of parameters the lines' appearance shall
+            depend on (see the example section). The n'th element specifies </dd> <dt><em> order: </em></dt><dd> String configuring the
+            line styles. It should contain numel(idx) space-delimited 'words' that configures each dimension. Each 'word' consists of
+            one or more of the following letters: <dl><dt><em> 'c': </em></dt><dd> Color </dd> <dt><em> 'l': </em></dt><dd> linestyle
+            </dd> <dt><em> 'm': </em></dt><dd> marker </dd> <dt><em> 'w': </em></dt><dd> linewidth </dd> <dt><em> 's': </em></dt><dd>
+            markersize </dd> <dt><em> 'e': </em></dt><dd> markeredge </dd> <dt><em> 'f': </em></dt><dd> markerface </dd> </dl> If the
+            letters of a 'word' are delimited by '|', the properties will change simultaneously, e.g. 'c|l' will change both color and
+            line style simultaneously. If there is no delimiter between letters, the properties will be changed in turn, e.g. 'cl' will
+            only change line style after having cycled through all color combinations, after which it once again cycles through all color
+            combinations. As an example, if idx is 3-dimensional, 'order' could be e.g. 'cl m e|f', which specifies that for the first
+            dimension, we cycle through all colors for each change of line style, similar to what MATLAB usually does for plots. For the
+            second dimension, we cycle through different marker styles, and finally we cycle through the marker colors, this time changing
+            the edge and face color simultaneously. For 1 to 4 dimensional idx, the default values are 'c', 'c l', 'c l m', and 'c l m
+            w', respectively. </dd> <dt><em> options ...: </em></dt><dd> Structs or field/value pairs with the following field names:
+            <dl><dt></dt><dd> color: <dl><dt></dt><dd> An Nx3 matrix with colors to switch between. Default: get(0, 'DefaultAxesColorOrder')
+            </dd> <dt><em> initialvalues: </em></dt><dd> Struct with linestyle, linewidth, markerstyle, markersize, markeredgecolor and
+            markerfacecolor fields, respectively, that have the same form as the options with the same names. The first element of the
+            'inittialvalues' fields are used when nothing is specified by 'order', possibly as a consequence of the values of 'selecteddimensions'.
+            Neither 'initialvalues' nor 'selecteddimensions' should probably be used directly. They are used for rather specialized interaction
+            with isp_plot. </dd> <dt><em> linestyle: </em></dt><dd> Cell array with linestyles to switch between. Default: {'-', '--',
+            ':', '-.'} </dd> <dt><em> linewidth: </em></dt><dd> Line widths to switch between. Default: [0.5 2 5]; </dd> <dt><em> markeredgecolor:
+            </em></dt><dd> Cell array with marker edge colors to switch between. Default: {'auto'}; </dd> <dt><em> markerfacecolor: </em></dt><dd>
+            Cell array with marker face colors to switch between. Default: {'none'}; </dd> <dt><em> markersize: </em></dt><dd> Marker
+            sizes to switch between. Default: 6 (i.e., the same is always used) </dd> <dt><em> markerstyle: </em></dt><dd> Cell array
+            with linestyles to switch between. Default: {'.', 'o', '+', '*', 's', '^'} </dd> <dt><em> order: </em></dt><dd> Alternative
+            way to specify the order string. </dd> <dt><em> suppresswarning: </em></dt><dd> Boolean telling whether to issue a warning
+            if there are too few combinations of line style, color etc. to give unique combinations. </dd> <dt><em> selecteddimensions:
+            </em></dt><dd> Only return the plotting arguments that are due to the dimensions given by this argument. Default: 1:numel(idx),
+            i.e., return all arguments. </dd></dl> </dd></dl> 
+         </p>
+         <h2>Output<a name="4"></a></h2>
+         <p><dl><dt><em> param: </em></dt><dd> The parameters to pass to the plot routine. See how to use them in the example section.
+            </dd> <dt><em> options: </em></dt><dd> Struct with input options supplemented with default values. </dd></dl> 
+         </p>
+         <h2>Example<a name="5"></a></h2>
+         <p>Let's say we have some simulation results where we have changed parameter x, y and z between 3, 2 and 4 different values each,
+            and that the results are in the [nx ny nz]-dimensional variable 'results'. We plot the z values along the x-axis, but now
+            we want changes in x and y to be reflected by the lines' appearances. Below, we let color and line style reflect the x axis,
+            and the marker style reflect the y axis.
+         </p><pre>% Create artificial data
+nx=3; ny=2; nz=4;
+results = rand([nx ny nz]);
+% Do the actual plotting.
+clf; hold all
+for ix = 1:nx
+for iy = 1:ny
+plotArgs = isp_linestyle([ix iy], 'l|c m');
+plot(squeeze(results(ix, iy, :)), plotArgs{:})
+end
+end</pre><h2>See also<a name="6"></a></h2>
+         <p><a href="isp_plot.html">isp_plot</a>, plot.
+         </p>
+         <h2>History<a name="7"></a></h2>
+         <p><dl> <dt><em>2007:</em></dt> <dd> Created by Jesper H. Jense <br><br></dd> </dl></p>
+         <p> <hr><table width="100%"><tr><td align="left"><em><a href="index.html">Intelligent Sound Processing Toolbox</a></em></td><td
+            align="right" size="-1"><em><a href="Contents.html">Contents</a></em></td></tr></table> 
+         </p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% ISP_LINESTYLE
+% Create options for line and marker styles.
+% 
+%% Syntax
+%  [param, options] = isp_linestyle(idx, varargin)
+%  [param, options] = isp_linestyle(idx, order, varargin)
+%  
+%% Description
+% This function makes it easy to create custom linestyles when MATLAB's
+% axes' ColorOrder and LineStyleOrder properties are not flexible enough.
+% It can be used to just create a lot of different linestyles, or it can be
+% used when e.g. the lines' color should depend on one parameter, the style
+% on another, and the marker type on a third parameter. Although isp_linestyle
+% can be called directly, in many cases it is easier to use isp_plot.
+% 
+%% Input
+% <dl><dt><em>
+% idx:
+% </em></dt><dd> 
+% Array of length N, where N is the number of parameters the lines'
+% appearance shall depend on (see the example section). The n'th element
+% specifies
+% </dd>
+% <dt><em>
+% order:
+% </em></dt><dd> 
+% String configuring the line styles. It should contain numel(idx)
+% space-delimited 'words' that configures each dimension. Each 'word'
+% consists of one or more of the following letters:
+% <dl><dt><em> 
+% 'c':
+% </em></dt><dd> 
+% Color
+% </dd>
+% <dt><em>
+% 'l':
+% </em></dt><dd> 
+% linestyle
+% </dd>
+% <dt><em>
+% 'm':
+% </em></dt><dd> 
+% marker
+% </dd>
+% <dt><em>
+% 'w':
+% </em></dt><dd> 
+% linewidth
+% </dd>
+% <dt><em>
+% 's':
+% </em></dt><dd> 
+% markersize
+% </dd>
+% <dt><em>
+% 'e':
+% </em></dt><dd> 
+% markeredge
+% </dd>
+% <dt><em>
+% 'f':
+% </em></dt><dd> 
+% markerface
+% </dd>
+% </dl>
+% If the letters of a 'word' are delimited by '|', the properties will
+% change simultaneously, e.g. 'c|l' will change both color and line
+% style simultaneously. If there is no delimiter between letters, the
+% properties will be changed in turn, e.g. 'cl' will only change line
+% style after having cycled through all color combinations, after which
+% it once again cycles through all color combinations. As an example,
+% if idx is 3-dimensional, 'order' could be e.g. 'cl m e|f', which
+% specifies that for the first dimension, we cycle through all colors
+% for each change of line style, similar to what MATLAB usually does
+% for plots. For the second dimension, we cycle through different marker
+% styles, and finally we cycle through the marker colors, this time
+% changing the edge and face color simultaneously.
+% For 1 to 4 dimensional idx, the default values are 'c', 'c l',
+% 'c l m', and 'c l m w', respectively.
+% </dd>
+% <dt><em>
+% options ...:
+% </em></dt><dd> 
+% Structs or field/value pairs with the following field names:
+% <dl><dt></dt><dd> 
+% color:
+% <dl><dt></dt><dd> 
+% An Nx3 matrix with colors to switch between.
+% Default: get(0, 'DefaultAxesColorOrder')
+% </dd>
+% <dt><em>
+% initialvalues:
+% </em></dt><dd> 
+% Struct with linestyle, linewidth, markerstyle, markersize,
+% markeredgecolor and markerfacecolor fields, respectively, that
+% have the same form as the options with the same names. The first
+% element of the 'inittialvalues' fields are used when nothing is
+% specified by 'order', possibly as a consequence of the values of
+% 'selecteddimensions'. Neither 'initialvalues' nor
+% 'selecteddimensions' should probably be used directly. They are
+% used for rather specialized interaction with isp_plot.
+% </dd>
+% <dt><em>
+% linestyle:
+% </em></dt><dd> 
+% Cell array with linestyles to switch between.
+% Default: {'-', 'REPLACE_WITH_DASH_DASH', ':', '-.'}
+% </dd>
+% <dt><em>
+% linewidth:
+% </em></dt><dd> 
+% Line widths to switch between. Default: [0.5 2 5];
+% </dd>
+% <dt><em>
+% markeredgecolor:
+% </em></dt><dd> 
+% Cell array with marker edge colors to switch between.
+% Default: {'auto'};
+% </dd>
+% <dt><em>
+% markerfacecolor:
+% </em></dt><dd> 
+% Cell array with marker face colors to switch between.
+% Default: {'none'};
+% </dd>
+% <dt><em>
+% markersize:
+% </em></dt><dd> 
+% Marker sizes to switch between. Default: 6 (i.e., the same is
+% always used)
+% </dd>
+% <dt><em>
+% markerstyle:
+% </em></dt><dd> 
+% Cell array with linestyles to switch between.
+% Default: {'.', 'o', '+', '*', 's', '^'}
+% </dd>
+% <dt><em>
+% order:
+% </em></dt><dd> 
+% Alternative way to specify the order string.
+% </dd>
+% <dt><em>
+% suppresswarning:
+% </em></dt><dd> 
+% Boolean telling whether to issue a warning if there are too few
+% combinations of line style, color etc. to give unique combinations.
+% </dd>
+% <dt><em>
+% selecteddimensions:
+% </em></dt><dd> 
+% Only return the plotting arguments that are due to the dimensions
+% given by this argument. Default: 1:numel(idx), i.e., return all
+% arguments.
+% </dd></dl>
+% </dd></dl>
+% 
+%% Output
+% <dl><dt><em>
+% param:
+% </em></dt><dd> 
+% The parameters to pass to the plot routine. See how to use them in
+% the example section.
+% </dd>
+% <dt><em>
+% options:
+% </em></dt><dd> 
+% Struct with input options supplemented with default values.
+% </dd></dl>
+% 
+%% Example
+% Let's say we have some simulation results where we have changed
+% parameter x, y and z between 3, 2 and 4 different values each,
+% and that the results are in the [nx ny nz]-dimensional variable 'results'.
+% We plot the z values along the x-axis, but now we want changes in x and y
+% to be reflected by the lines' appearances. Below, we let color and line
+% style reflect the x axis, and the marker style reflect the y axis.
+% 
+%  % Create artificial data
+%  nx=3; ny=2; nz=4;
+%  results = rand([nx ny nz]);
+%  % Do the actual plotting.
+%  clf; hold all
+%  for ix = 1:nx
+%  for iy = 1:ny
+%  plotArgs = isp_linestyle([ix iy], 'l|c m');
+%  plot(squeeze(results(ix, iy, :)), plotArgs{:})
+%  end
+%  end
+% 
+%% See also
+% <isp_plot.html isp_plot>, plot.
+%% History
+% <dl>
+% <dt><em>2007:</em></dt>
+% <dd>
+% Created by Jesper H. Jense
+% <br><br></dd>
+% </dl>
+%%
+%
+% 
+% <hr><table width="100%"><tr><td align="left"><em><a href="index.html">Intelligent Sound Processing Toolbox</a></em></td><td align="right" size="-1"><em><a href="Contents.html">Contents</a></em></td></tr></table>
+% 
+%
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

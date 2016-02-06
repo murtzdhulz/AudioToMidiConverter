@@ -1,0 +1,29 @@
+#!/bin/bash
+echo "Be careful! Depending on compiler/libraries/distribution (don't"
+echo "know exactly what), the resulting binary might introduce a few seconds"
+echo of clipping in the beginning!
+echo
+echo Furthermore, in order to compile on Solaris, you may need to compile
+echo timidity manually with
+echo mkdir solaris; touch solaris/stdint.h; CPATH=../solaris make
+echo
+echo Press enter to continue
+read
+
+dpkg-source -x timidity_2.13.2-11.dsc 
+cd timidity-2.13.2/
+./configure --prefix=/proc --without-x --enable-audio=
+make
+
+case `uname -m` in
+ (sun4u)
+    SUFFIX=SOL2;;
+ (i?86)
+    SUFFIX=GLNX86;;
+ (x86_64)
+    SUFFIX=GLNXA64
+esac
+
+echo
+echo
+echo Now copy timidity-2.13.2/timidity/timidity to ./timidity.$SUFFIX

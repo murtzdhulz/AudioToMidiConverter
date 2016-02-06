@@ -1,0 +1,39 @@
+#!/bin/bash
+
+
+#The following patch is necessary to compile on solaris
+
+patch << EOF
+--- frontend/brhist.c.orig      Sun Sep 24 15:53:31 2006
++++ frontend/brhist.c   Mon Nov 20 14:02:55 2006
+@@ -429,7 +429,7 @@
+ void
+ brhist_disp(const lame_global_flags * gf)
+ {
+-    int     i, lines = 0;
++    int     i, brh_lines = 0;
+     int     br_hist[BRHIST_WIDTH]; /* how often a frame size was used */
+     int     br_sm_hist[BRHIST_WIDTH][4]; /* how often a special frame size/stereo mode commbination was used */
+     int     st_mode[4];
+@@ -456,13 +456,13 @@
+         if (most_often < br_hist[i])
+             most_often = br_hist[i];
+         if (br_hist[i])
+-            ++lines;
++            ++brh_lines;
+     }
+ 
+     for (i = 0; i < BRHIST_WIDTH; i++) {
+         int     show = br_hist[i];
+ #ifdef RH_HIST
+-        show = show && (lines > 1);
++        show = show && (brh_lines > 1);
+ #endif
+         if (show
+             || (i >= brhist.vbr_bitrate_min_index
+EOF
+
+
+./configure
+make
+echo Now copy frontend/lame to lame.SOL2 or lame.GLNX86

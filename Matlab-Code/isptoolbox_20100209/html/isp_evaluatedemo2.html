@@ -1,0 +1,161 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN">
+<html xmlns:mwsh="http://www.mathworks.com/namespace/mcode/v1/syntaxhighlight.dtd">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   
+      <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      -->
+      <title>ISP_EVALUATEDEMO2  Demonstration of how to use the evaluation framework</title>
+      <meta name="generator" content="MATLAB 7.5">
+      <meta name="date" content="2010-02-09">
+      <meta name="m-file" content="isp_evaluatedemo2"><style>
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head>
+   <body>
+      <div class="content">
+         <h1>ISP_EVALUATEDEMO2  Demonstration of how to use the evaluation framework</h1>
+         <p>In the following, we evaluate how well the isp_tichroma distance measure behaves when songs are identical except for tempo.</p><pre class="codeinput">dstMsr = isp_tichroma;
+datapath = <span class="string">'./evaluatedata'</span>;
+</pre><p>We only run the test with four different instruments and three melodies. For any serious use, use the default values of 30
+            instruments and 30 melodies.
+         </p><pre class="codeinput">tic
+res = isp_evaluate(dstMsr, <span class="keyword">...</span>
+             <span class="string">'distribute'</span>, <span class="string">'ask'</span>, <span class="keyword">...</span>
+             <span class="string">'experiment'</span>, {<span class="string">'instrumentmelody'</span>, <span class="string">'duration'</span>}, <span class="keyword">...</span>
+             <span class="string">'dataPath'</span>, datapath, <span class="keyword">...</span>
+             <span class="string">'nInstruments'</span>, 4, <span class="keyword">...</span>
+             <span class="string">'nMidifiles'</span>, 3);
+toc
+</pre><pre class="codeoutput">Options:
+0. Execute without distributing anything.
+1. Distribute feature calculation.
+2. Merge features and distribute distances.
+3. Merge features, compute distances and extract results.
+4. Merge distances and extract results.
+5. Show results.
+What do you want to do? 0
+0
+
+Testing distance measure Tempoinvariant chroma.
+Performing instrumentmelody test.
+Warning: Fewer instruments selected than expected.
+Executing /home/jesper/no_backup/isptoolbox/toolbox/isp_mf2t.GLNX86 "/home/jesper/no_backup/isptoolbox/toolbox/shortmidifiles/50s Rock.mid" "/tmp/file6fcJ8L.txt"
+Modifying instrumentation.
+Executing /home/jesper/no_backup/isptoolbox/toolbox/isp_t2mf.GLNX86  "/tmp/fileLu0uhr.txt" "/tmp/fileMwPcEm.mid"
+Executing /home/jesper/no_backup/isptoolbox/toolbox/isp_timidity.GLNX86 -idq -s 11025 -Ow --output-stereo -o "/tmp/fileqreHh5.wav" -c "/tmp/file41lTiU.cfg" "/tmp/fileMwPcEm.mid"
+/proc/share/timidity/timidity.cfg: No such file or directory
+Playing /tmp/fileMwPcEm.mid
+
+...
+
+Computing distance matrix.
+Evaluating distance matrix.
+Evaluating distance matrix.
+Elapsed time is 1019.878283 seconds.
+</pre><p>Finally, we plot the results. In Figure 1, we see that the melody recognition accuracy is 100%, and the instrument recognition
+            accuracy is 0, which is what we would except for a distance measure developed for cover song recognition. In Figure 2, we
+            see that when the length of a song is 3/4 of the original, the melody recognition accuracy drops to somewhere between 60%
+            and 70%. Again, with only 4 instruments and 3 melodies in the test set, these results should be taken with a grain of salt.
+         </p><pre class="codeinput">isp_plotresults(res, <span class="string">'xaxis'</span>, <span class="string">'modification'</span>);
+</pre><img vspace="5" hspace="5" src="isp_evaluatedemo2_01.png"> <img vspace="5" hspace="5" src="isp_evaluatedemo2_02.png"> <p> <hr><table width="100%"><tr><td align="left"><em><a href="index.html">Intelligent Sound Processing Toolbox</a></em></td><td
+            align="right" size="-1"><em><a href="Contents.html">Contents</a></em></td></tr></table> 
+         </p>
+      </div>
+      <!--
+##### SOURCE BEGIN #####
+%% ISP_EVALUATEDEMO2  Demonstration of how to use the evaluation framework
+% In the following, we evaluate how well the isp_tichroma distance
+% measure behaves when songs are identical except for tempo.
+
+dstMsr = isp_tichroma;
+datapath = './evaluatedata';
+
+%%
+% We only run the test with four different instruments and three
+% melodies. For any serious use, use the default values of 30 instruments
+% and 30 melodies.
+tic
+res = isp_evaluate(dstMsr, ...
+             'distribute', 'ask', ...
+             'experiment', {'instrumentmelody', 'duration'}, ...
+             'dataPath', datapath, ...
+             'nInstruments', 4, ...
+             'nMidifiles', 3);
+toc
+
+%%
+% Finally, we plot the results. In Figure 1, we see that the melody
+% recognition accuracy is 100%, and the instrument recognition accuracy is
+% 0, which is what we would except for a distance measure developed for
+% cover song recognition. In Figure 2, we see that when the length of a song
+% is 3/4 of the original, the melody recognition accuracy drops to somewhere
+% between 60% and 70%. Again, with only 4 instruments and 3 melodies in the
+% test set, these results should be taken with a grain of salt.
+isp_plotresults(res, 'xaxis', 'modification');
+%%
+% 
+% <hr><table width="100%"><tr><td align="left"><em><a href="index.html">Intelligent Sound Processing Toolbox</a></em></td><td align="right" size="-1"><em><a href="Contents.html">Contents</a></em></td></tr></table>
+% 
+
+##### SOURCE END #####
+-->
+   </body>
+</html>

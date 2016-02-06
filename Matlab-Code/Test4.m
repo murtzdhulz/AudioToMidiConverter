@@ -1,0 +1,10 @@
+Fs=44100;
+t=0:1/Fs:2;
+f1=440;
+w=2*pi*f1*t;
+y1=sin(w)+0.75*sin(3*w)+0.5*sin(5*w)+0.14*sin(7*w)+0.5*sin(9*w)+0.14*sin(11*w)+0.17*sin(13*w);
+f2=880;
+w=2*pi*f2*t;
+y2=sin(w)+0.75*sin(3*w)+0.5*sin(5*w)+0.14*sin(7*w)+0.5*sin(9*w)+0.14*sin(11*w)+0.17*sin(13*w);
+y=y1+y2;
+soundsc(y,Fs);

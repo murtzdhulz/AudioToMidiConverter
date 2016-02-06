@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Intelligent Sound Processing Toolbox</title>
+</head>
+<body>
+<div style="text-align: center;">
+<h1>Intelligent Sound Processing</h1>
+<br>
+<img alt="" src="isplogo.png"><br>
+<br>
+Home of the music information retrieval toolbox
+<br>
+</div>
+
+<!--
+<a href="#features">Features</a><br>
+<a href="#documentation">Documentation</a><br>
+<a href="#download">Download</a><br>
+<a href="#about">About</a><br>
+<a href="#acknowledgements">Acknowledgements</a><br>
+<a href="#changelog">Changelog</a><br>
+-->
+
+<a name="features"></a>
+<h2>Features</h2>
+The Intelligent Sound Processing Toolbox contains a great range of functions related to music information retrieval. Its major features are:
+<ul>
+
+<li>Functions for feature extraction, such as mel-frequency
+cepstral coefficients, chromagram etc.</li>
+
+<li>A complete test framework which is also prepared for most standard audio collections such as the ISMIR 2004 <a href="http://ismir2004.ismir.net/genre_contest/index.htm">genre classification training set</a> and <a href="http://mtg.upf.edu/ismir2004/contest/tempoContest/node5.html">ballroom</a> data, the <a href="http://labrosa.ee.columbia.edu/projects/coversongs/covers80/">covers80</a> and <a href="http://labrosa.ee.columbia.edu/projects/artistid/">artist20</a> sets, and a number of custom tests based on MIDI synthesis.</li>
+
+<li>Functions that makes distributing computations among multiple
+machines easy, even without the Distributed Computing Toolbox. Of
+course, the test framework makes full use of these.</li>
+
+<li>Tools for manipulating and synthesizing MIDI files, thus making it
+easy to make synthetic tests that show specific properties of
+algorithms.</li>
+
+<li>A fast implementation of Dan Ellis' instantaneous frequency-based
+chromagram, and reasonably fast Gaussian mixture model tools.</li>
+
+<!--<li>Except some plotting operations, everything is compatible with
+<a href="http://www.gnu.org/software/octave/">Octave</a> version
+3.</li>-->
+
+<li>Distributed under the GNU General Public License version 2. If you need a less restrictive license, <a href="mailto:jhj@es.aau.dk">contact us</a>.</li>
+
+<li>Does not use any of MATLAB's object oriented features.</li>
+
+</ul>
+
+<a name="documentation"></a>
+<h2>Documentation</h2>
+Documentation of the included functions can be found <a href="Contents.html">here</a>. Be sure to have a look at the <a href="Contents.html#1">demonstrations</a>.
+
+<a name="download"></a>
+<h2>Download</h2>
+The ISP toolbox is still in beta, so features might change without notice. Download the full version <a href="isptoolbox_20100209.zip">here</a> (152 MB), or the reduced version without sound fonts and source code <a href="isptoolbox_20100209-small.zip">here</a> (14 MB).
+Older versions are available <a href="files/">here</a>.
+
+<a name="about"></a>
+<h2>About</h2>
+The ISP Toolbox is developed as part of the <a
+href="http://www.intelligentsound.org/">Intelligent Sound Project</a>
+and is maintained by <a href="mailto:jhj@es.aau.dk">Jesper
+H&oslash;jvang Jensen</a>. Other contributors from the Intelligent Sound Project are:
+<ul>
+<li>Anders Meng</li>
+<li>Elvis Ramonovic</li>
+<li>Kaare Brandt Petersen</li>
+<li>Mads Gr&aelig;sb&oslash;ll Christensen</li>
+<li>Sigurdur Sigurdsson</li>
+<li>Tue Lehn-Schi&oslash;ler</li>
+</ul>
+
+<a name="acknowledgements"></a>
+<h2>Acknowledgements</h2>
+<ul>
+<li>The original versions of isp_mp3read, <a href="isp_ifchromagram.html">isp_ifchromagram</a>, <a href="isp_ifptrack.html">isp_ifptrack</a> and <a href="isp_ifgram.html">isp_ifgram</a> are all written by <a href="http://www.ee.columbia.edu/~dpwe/">Dan Ellis</a>.</li>
+
+<li>The files <a href="isp_midiread.html">isp_midiread</a> and <a href="isp_midiwrite.html">isp_midiwrite</a> are extended versions of the corresponding files from the <a href="http://www.jyu.fi/hum/laitokset/musiikki/en/research/coe/materials/miditoolbox/">Midi Toolbox</a>.</li>
+
+<li>The file <a href="isp_mfccvb.html">isp_mfccvb</a> uses functions from Mike Brookes' <a href="http://www.ee.ic.ac.uk/hp/staff/dmb/voicebox/voicebox.html">VOICEBOX</a> toolbox.</li>
+
+<li>This toolbox uses code from
+<a href="http://lame.sourceforge.net/">LAME</a>, 
+<a href="http://www.underbit.com/products/mad/">MAD</a>, 
+<a href="http://archive.cs.uu.nl/pub/MIDI/PROGRAMS/mf2tsrc.zip">MF2T/T2MF</a>, 
+<a href="http://www.mplayerhq.hu/">MPlayer</a>, and 
+<a href="http://timidity.sourceforge.net/">TiMidity++</a>.
+</li>
+
+<li>The included <a href="http://soundfonts.homemusician.net/collections_soundfonts/fluid_release_3.html">Fluid Release 3</a> sound font was made by Frank Wen, and the test mp3 is from <a href="http://ccmixter.org/files/Loveshadow/12192">ccMixter</a>.</li>
+</ul>
+
+<a name="changelog"></a>
+<h2>Changelog</h2>
+<dl>
+<dt><b>2010-02-09</b><dt>
+<dd>Thanks to Dan Ellis and Adrian Weller, the chromagram functions now also compile under Windows.<br><br></dd>
+
+<dt><b>2009-07-28</b><dt>
+<dd>Added the <a href="isp_rhythdemo.html">isp_rhythdemo.m</a> script and reorganized some of <a href="isp_tirhythm.html">isp_tirhythm.m</a>.<br><br></dd>
+
+<dt><b>2008-08-14</b><dt>
+<dd>Bug in the distribution functions caused by the change of random
+number generator in Matlab 7.0sp3 fixed. Memory leak in chromagram
+function fixed thanks to Dan Ellis.<br><br></dd>
+
+<dt><b>2008-06-29</b><dt>
+<dd>Minor bugfixes.<br><br></dd>
+
+<dt><b>2008-06-02</b><dt>
+<dd>The beta of the ISP Toolbox v. 2 was released.<br><br></dd>
+
+<dt><b>2006-04-03</b><dt>
+<dd>The Intelligent Sound Processing toolbox R1 is now available for download. Features: MFCC short-term features, multi-variate Auto-Regressive long-term feature modeling, maximum likelihood and correlation based fundamental frequency estimators, and Gaussian mixture model-based classification.<br><br></dd>
+
+<dt><b>2006-03-22</b></dt>
+<dd>On April 1 2006, the first version of the Intelligent Sound Processing toolbox for MATLAB will be released and made available for download on this homepage.<br><br></dd>
+
+<dt><b>2006-02-02</b></dt>
+<dd>This Intelligent Sound project server (isound.kom.auc.dk) is now up and running. It will host the Intelligent Sound Processing (ISP) toolbox for MATLAB.<br><br></dd>
+
+<hr>
+<table width="100%">
+<tr>
+<td align="left"><em>Intelligent Sound Processing Toolbox</em></td>
+<td align="right" size="-1"><em>Last updated February 9, 2010.</td>
+</tr>
+</table>
+
+</body>
+</html>

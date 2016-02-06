@@ -1,0 +1,195 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Mono</title><meta name="generator" content="MATLAB 7.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2014-02-14"><meta name="DC.source" content="Mono.m"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><pre class="codeinput">clc;
+clear <span class="string">all</span>;
+close <span class="string">all</span>;
+[y,Fs] = wavread(<span class="string">'57.wav'</span>);
+
+m = 2048; <span class="comment">%no of samples in Frame</span>
+o = 512; <span class="comment">%no of overlapping samples</span>
+n = m-o;
+w = hanning(m); <span class="comment">%hanning window</span>
+<span class="comment">%w=w/mean(w);</span>
+left = y(:,1); <span class="comment">%take left channel</span>
+
+time = (1/Fs)*length(left); <span class="comment">%Total duration of wave file</span>
+t = linspace(0,time,length(left)); <span class="comment">%for time axis</span>
+
+subplot(2,1,1);
+plot(t,left);
+xlabel(<span class="string">'Time in Seconds'</span>);
+ylabel(<span class="string">'Amplitude'</span>);
+title(<span class="string">'Input Audio File in Time domain'</span>);
+
+subplot(2,1,2);
+plot([1:m],w);
+xlabel(<span class="string">'No. of samples'</span>);
+ylabel(<span class="string">'Weighting'</span>);
+title([<span class="string">'Hanning Window of '</span> num2str(m) <span class="string">' Samples'</span>]);
+
+al = length(left)-m;
+pad1 = mod(al,n);
+k = ceil(al/n) + 1;
+
+left = padarray(left,[pad1+m 0],0,<span class="string">'post'</span>);
+
+nUniquePts = ceil((m+1)/2);
+freqArray = (0:nUniquePts-1)*(Fs/m);
+s1 = 1;
+i = 1;
+<span class="keyword">while</span> i &lt;= k
+    frame = left(s1:(s1+m-1));
+    wframe = frame.*w;
+    fl = length(frame);
+    p = fft(wframe);
+    p = p(1:nUniquePts);
+    p = abs(p);
+    p = p/fl;
+    p = p.^2;
+    <span class="keyword">if</span> rem(fl, 2)
+        p(2:end) = p(2:end)*2;
+    <span class="keyword">else</span>
+        p(2:end-1) = p(2:end-1)*2;
+    <span class="keyword">end</span>
+    [max_value, index] = max(p(:));
+    notearray(i) = freqArray(index);
+    i = i+1;
+    s1 = s1+n-1;
+<span class="keyword">end</span>
+
+figure(2);
+plot(notearray);
+xlabel(<span class="string">'Frame number'</span>);
+ylabel(<span class="string">'Frequency'</span>);
+</pre><img vspace="5" hspace="5" src="Mono_01.png" alt=""> <img vspace="5" hspace="5" src="Mono_02.png" alt=""> <p class="footer"><br>
+      Published with MATLAB&reg; 7.12<br></p></div><!--
+##### SOURCE BEGIN #####
+clc;
+clear all;
+close all;
+[y,Fs] = wavread('57.wav');
+
+m = 2048; %no of samples in Frame
+o = 512; %no of overlapping samples
+n = m-o;
+w = hanning(m); %hanning window
+%w=w/mean(w);
+left = y(:,1); %take left channel
+
+time = (1/Fs)*length(left); %Total duration of wave file
+t = linspace(0,time,length(left)); %for time axis
+
+subplot(2,1,1);
+plot(t,left);
+xlabel('Time in Seconds');
+ylabel('Amplitude');
+title('Input Audio File in Time domain');
+
+subplot(2,1,2);
+plot([1:m],w);
+xlabel('No. of samples');
+ylabel('Weighting');
+title(['Hanning Window of ' num2str(m) ' Samples']);
+
+al = length(left)-m;
+pad1 = mod(al,n);
+k = ceil(al/n) + 1;
+
+left = padarray(left,[pad1+m 0],0,'post');
+
+nUniquePts = ceil((m+1)/2);
+freqArray = (0:nUniquePts-1)*(Fs/m);
+s1 = 1;
+i = 1;
+while i <= k
+    frame = left(s1:(s1+m-1));
+    wframe = frame.*w;
+    fl = length(frame);
+    p = fft(wframe);
+    p = p(1:nUniquePts);
+    p = abs(p);
+    p = p/fl;
+    p = p.^2;
+    if rem(fl, 2)
+        p(2:end) = p(2:end)*2;
+    else
+        p(2:end-1) = p(2:end-1)*2;
+    end
+    [max_value, index] = max(p(:));
+    notearray(i) = freqArray(index);
+    i = i+1;
+    s1 = s1+n-1;
+end
+
+figure(2);
+plot(notearray);
+xlabel('Frame number'); 
+ylabel('Frequency');
+
+
+
+
+##### SOURCE END #####
+--></body></html>
